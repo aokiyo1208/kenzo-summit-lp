@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KENZOサミット – 旗手 | 登壇企業向け企画提案資料</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1a3a52;
+            --accent-blue: #2563eb;
+            --light-gray: #f8f9fa;
+            --border-gray: #e5e7eb;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'ヒラギノ角ゴ Pro', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
+            margin-bottom: 50px;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 30px;
+        }
+
+        .header-eyebrow {
+            font-size: 12px;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-gray);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            background-color: #fef3c7;
+            padding: 20px;
+            border-left: 4px solid #fbbf24;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .info-box {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-left: 4px solid var(--accent-blue);
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .schedule-table th {
+            background-color: var(--primary-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        .schedule-table tr:hover {
+            background-color: var(--light-gray);
+        }
+
+        .time {
+            font-weight: 600;
+            color: var(--accent-blue);
+            white-space: nowrap;
+        }
+
+        .speaker {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        table.theme-request {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table.theme-request th,
+        table.theme-request td {
+            padding: 20px;
+            text-align: left;
+            border: 1px solid var(--border-gray);
+        }
+
+        table.theme-request th {
+            background-color: var(--primary-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        table.theme-request tr:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        .column-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+        }
+
+        .notes {
+            font-size: 14px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-right: 8px;
+        }
+
+        .accent {
+            color: var(--accent-blue);
+        }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-gray);
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .schedule-table th,
+            .schedule-table td,
+            table.theme-request th,
+            table.theme-request td {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-eyebrow">登壇企業向け企画提案</div>
+            <h1>KENZOサミット – 旗手 – 2026冬</h1>
+            <p class="subtitle">地域建設業のDX・ICT推進を加速する実践事例共有フォーラム</p>
+        </header>
+
+        <!-- ===== イベント概要 ===== -->
+        <section>
+            <h2>イベント概要</h2>
+            <div class="info-box">
+                <p><strong>開催日時：</strong> 2025年11月10日（火）14:00–17:00（懇親会 17:00–18:30）</p>
+                <p><strong>開催地：</strong> 東京都港区北青山3-12-7</p>
+                <p><strong>参加方法：</strong> 会場参加またはオンライン参加</p>
+                <p><strong>定員：</strong> 会場40名 / オンライン40名（申込制）</p>
+                <p><strong>参加対象：</strong> 建設企業の経営層・現場責任者、IT関連企業、DX推進関心企業</p>
+                <p><strong>参加費：</strong> 無料</p>
+                <p><strong>CPDS：</strong> 取得可（3時間認定予定）</p>
+                <p><strong>主催：</strong> 株式会社KENZO</p>
+            </div>
+
+            <h3>フォーラムのコンセプト</h3>
+            <p>KENZOサミット「旗手」は、<strong>地域建設業のDX・ICT推進の実践事例を共有し、業界全体の加速度を高めるフォーラム</strong>です。</p>
+            <p>経営層から現場まで、「理論ではなく、実際に動かしたプロジェクト」について直接発表・質疑応答することで、参加者が新しい視点を得られる場を目指しています。</p>
+
+            <h3>期待する参加者像</h3>
+            <ul>
+                <li>自社のDX推進を検討中の建設企業の経営層・DX推進担当者</li>
+                <li>現場のICT活用を推進する現場責任者・監督</li>
+                <li>建設業向けのIT・SaaS企業営業開発担当者</li>
+                <li>他社のDX事例から学びたい同業他社</li>
+            </ul>
+        </section>
+
+        <!-- ===== プログラム構成 ===== -->
+        <section>
+            <h2>プログラム構成</h2>
+
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th width="25%">時間</th>
+                        <th width="60%">プログラム内容</th>
+                        <th width="15%">対象</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="time">14:00–14:10</td>
+                        <td>オープニング<br><span class="notes">イベント趣旨説明、参加企業紹介</span></td>
+                        <td>全員</td>
+                    </tr>
+                    <tr>
+                        <td class="time">14:10–14:55</td>
+                        <td><strong>実践事例発表 Vol.1 (45分)</strong><br><span class="speaker">株式会社屋部土建 / 入佐学さん</span></td>
+                        <td>全員</td>
+                    </tr>
+                    <tr>
+                        <td class="time">14:55–15:40</td>
+                        <td><strong>実践事例発表 Vol.2 (45分)</strong><br><span class="speaker">株式会社美保テクノス / 新田唯史さん</span></td>
+                        <td>全員</td>
+                    </tr>
+                    <tr>
+                        <td class="time">15:40–16:25</td>
+                        <td><strong>実践事例発表 Vol.3 (45分)</strong><br><span class="speaker">株式会社砂子組 / 真坂紀至さん</span></td>
+                        <td>全員</td>
+                    </tr>
+                    <tr>
+                        <td class="time">16:25–17:00</td>
+                        <td><strong>パネルディスカッション・Q&amp;A (35分)</strong><br><span class="notes">3登壇者によるパネル、参加者質問対応</span></td>
+                        <td>全員</td>
+                    </tr>
+                    <tr style="background-color: #e0f2fe;">
+                        <td class="time">17:00–18:30</td>
+                        <td><strong>懇親会</strong><br><span class="notes">登壇者とのネットワーキング、参加企業間交流</span></td>
+                        <td>希望者</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>各登壇者の講演時間は45分間です。</strong>自由にカスタマイズできます：</p>
+            <ul>
+                <li>プレゼンテーション 30分 + Q&amp;A 15分</li>
+                <li>プレゼン 35分 + デモ 10分</li>
+                <li>その他の構成も相談可能</li>
+            </ul>
+        </section>
+
+        <!-- ===== 登壇テーマのリクエスト ===== -->
+        <section>
+            <h2>講演テーマのご相談</h2>
+
+            <p>各企業の実践的なDX・ICT推進の内容をお話いただきたいです。以下はあくまで例示であり、各社の発表したい内容に合わせて、<strong>テーマは自由にご設定いただけます。</strong></p>
+
+            <h3>テーマ設定のポイント</h3>
+            <ul>
+                <li><strong>「課題 → 解決策 → 成果」</strong> の流れが分かりやすいテーマ</li>
+                <li>他社の参加者が「自社にも応用できそう」と感じられる具体性</li>
+                <li>DXの技術的側面だけでなく、<strong>組織・運用の工夫</strong>も含まれていると◎</li>
+                <li>既に実装済み、または着手段階の「リアルな事例」であること</li>
+            </ul>
+
+            <table class="theme-request">
+                <thead>
+                    <tr>
+                        <th>登壇企業</th>
+                        <th>登壇者</th>
+                        <th>想定されるテーマ例</th>
+                        <th>確認内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="company-name">株式会社屋部土建</span></td>
+                        <td><strong>入佐学さん</strong><br>（常務）</td>
+                        <td>
+                            <div class="column-title">例）</div>
+                            <ul style="margin-left: 20px; font-size: 14px;">
+                                <li>現場デジタル化の段階的実装</li>
+                                <li>施工管理システム導入と組織変化</li>
+                                <li>建設現場のICT化を推進する組織づくり</li>
+                                <li>etc.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <p style="font-size: 14px; margin: 0;">
+                                <strong>リクエスト予定</strong><br>
+                                <span class="notes">11月中旬までにテーマ確定予定</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="company-name">株式会社美保テクノス</span></td>
+                        <td><strong>新田唯史さん</strong></td>
+                        <td>
+                            <div class="column-title">例）</div>
+                            <ul style="margin-left: 20px; font-size: 14px;">
+                                <li>複数企業のICT導入支援から見える課題・解決策</li>
+                                <li>建設業向けSaaSの実装ポイント</li>
+                                <li>技術導入の成功要因と失敗パターン</li>
+                                <li>etc.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <p style="font-size: 14px; margin: 0;">
+                                <strong>リクエスト予定</strong><br>
+                                <span class="notes">11月中旬までにテーマ確定予定</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="company-name">株式会社砂子組</span></td>
+                        <td><strong>真坂紀至さん</strong><br>（常務執行役員）</td>
+                        <td>
+                            <div class="column-title">例）</div>
+                            <ul style="margin-left: 20px; font-size: 14px;">
+                                <li>大規模プロジェクトのDX化戦略</li>
+                                <li>経営視点から見るICT投資のROI</li>
+                                <li>業界全体の競争力強化に向けたDX推進</li>
+                                <li>etc.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <p style="font-size: 14px; margin: 0;">
+                                <strong>リクエスト予定</strong><br>
+                                <span class="notes">11月中旬までにテーマ確定予定</span>
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <strong>テーマ決定スケジュール</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>9月中旬：</strong> このご案内を送付</li>
+                    <li><strong>10月初旬：</strong> 各登壇企業とテーマ確定ミーティング（オンライン可）</li>
+                    <li><strong>10月中旬：</strong> 最終テーマ・スライド構成確定</li>
+                    <li><strong>11月初旬：</strong> リハーサル（希望者対象）</li>
+                    <li><strong>11月10日：</strong> 本番</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== 登壇のメリット ===== -->
+        <section>
+            <h2>登壇企業にとってのメリット</h2>
+
+            <h3>1. 業界への認知向上</h3>
+            <p>地域建設業のDX推進に先行する企業として、業界内での認知と信頼を獲得できます。</p>
+
+            <h3>2. ネットワーク構築</h3>
+            <p>同じDX推進に取り組む企業や関連企業とのコネクション形成、今後のビジネス機会につながります。</p>
+
+            <h3>3. 事例をナレッジ化</h3>
+            <p>自社の実装経験を、業界全体の課題解決に貢献させることで、企業のCSVやESG活動としても位置づけられます。</p>
+
+            <h3>4. フィードバック・改善機会</h3>
+            <p>Q&amp;Aやパネルディスカッションを通じて、参加者からのフィードバックを直接受け、今後の取り組みの参考にできます。</p>
+        </section>
+
+        <!-- ===== サポート内容 ===== -->
+        <section>
+            <h2>KENZO側でのサポート</h2>
+
+            <ul>
+                <li><strong>テーマ企画サポート：</strong> テーマ設定や講演構成に関する相談に応じます。</li>
+                <li><strong>技術手配：</strong> プロジェクタ、マイク、スライド表示等の技術サポートはKENZO側で手配します。</li>
+                <li><strong>リハーサル実施：</strong> 希望に応じて、本番前のリハーサルをオンラインで実施できます。</li>
+                <li><strong>当日の進行管理：</strong> タイムマネジメント、Q&amp;A進行等は KENZO が担当します。</li>
+                <li><strong>懇親会サポート：</strong> 登壇者との懇親会、参加者とのマッチングをサポートします。</li>
+            </ul>
+        </section>
+
+        <!-- ===== 次のステップ ===== -->
+        <section>
+            <h2>次のステップ</h2>
+
+            <div class="info-box">
+                <p style="margin: 0;"><strong>1. このご案内をご確認いただき、テーマ案をご検討ください。</strong></p>
+                <p style="margin-top: 10px; margin-bottom: 0;">2. 10月初旬に、KENZO側から改めてテーマ確定ミーティングのご案内をさせていただきます。</p>
+            </div>
+
+            <h3>ご質問・ご相談</h3>
+            <p>テーマ案の段階で、ご質問やご相談があればお気軽にお声がけください。</p>
+
+            <p><strong>Contact：</strong><br>
+            株式会社KENZO<br>
+            青木陽（CEO）<br>
+            <a href="mailto:aoki@kenzo.co.jp" style="color: var(--accent-blue); text-decoration: none;">aoki@kenzo.co.jp</a></p>
+        </section>
+
+        <footer>
+            <p>KENZOサミット – 旗手 – 2026冬 | 登壇企業向け企画提案資料</p>
+            <p style="margin-top: 8px;">株式会社KENZO | 建設業DX × AI/SaaS</p>
+        </footer>
+    </div>
+</body>
+</html>

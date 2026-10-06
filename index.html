@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KENZOサミット – 旗手 – 2026冬｜地域建設業DXフォーラム</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1a3a52;
+            --accent-blue: #2563eb;
+            --light-gray: #f8f9fa;
+            --border-gray: #e5e7eb;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'ヒラギノ角ゴ Pro', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+        }
+
+        /* ===== ヒーロー ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0f2438 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-size: 14px;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            opacity: 0.95;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-meta-label {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-bottom: 4px;
+        }
+
+        .hero-meta-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* ===== セクション基本 ===== */
+        section {
+            padding: 60px 20px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--accent-blue);
+            display: inline-block;
+        }
+
+        /* ===== コンセプト ===== */
+        .concept {
+            background-color: var(--light-gray);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .concept-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-blue);
+            line-height: 1.8;
+        }
+
+        .concept-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+        }
+
+        .concept-card-text {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* ===== タイムテーブル ===== */
+        .schedule {
+            background: white;
+        }
+
+        .schedule-list {
+            display: grid;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .schedule-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 20px;
+            padding: 20px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            align-items: start;
+        }
+
+        .schedule-time {
+            font-weight: 600;
+            color: var(--accent-blue);
+            font-size: 15px;
+        }
+
+        .schedule-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .schedule-title {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .schedule-speaker {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .schedule-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .schedule-item.opening {
+            background-color: var(--light-gray);
+        }
+
+        .schedule-item.closing {
+            background-color: #fef3c7;
+            border-color: #fcd34d;
+        }
+
+        .schedule-item.networking {
+            background-color: #e0f2fe;
+            border-color: #0ea5e9;
+        }
+
+        /* ===== 登壇者 ===== */
+        .speakers {
+            background: var(--light-gray);
+        }
+
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .speaker-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 4px solid var(--accent-blue);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .speaker-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .speaker-avatar {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e5e7eb;
+        }
+
+        .speaker-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .speaker-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-blue);
+        }
+
+        .speaker-title {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        .speaker-company {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 16px;
+        }
+
+        .speaker-bio {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .speaker-topic {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-gray);
+            font-size: 13px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* ===== イベント情報 ===== */
+        .event-info {
+            background: white;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .info-item {
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 20px;
+        }
+
+        .info-label {
+            font-size: 13px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .info-content {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0f2438 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .cta-note {
+            font-size: 14px;
+            margin-top: 20px;
+            opacity: 0.9;
+        }
+
+        /* ===== フッター ===== */
+        footer {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* ===== レスポンシブ ===== */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .schedule-item {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .schedule-time {
+                font-size: 14px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 40px 20px;
+            }
+        }
+
+        .accent {
+            color: var(--accent-blue);
+        }
+
+        .text-muted {
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== ヒーロー ===== -->
+    <div class="hero">
+        <div class="hero-container">
+            <div class="hero-eyebrow">2026 WINTER FORUM</div>
+            <h1>KENZOサミット – 旗手</h1>
+            <p class="hero-subtitle">地域建設業のDX・ICT推進を加速する<br>実践事例共有フォーラム</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">開催日</div>
+                    <div class="hero-meta-value">2025.11.10（火）</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">開始時刻</div>
+                    <div class="hero-meta-value">14:00–17:00</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">参加費</div>
+                    <div class="hero-meta-value">無料</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== コンセプト ===== -->
+    <section class="concept">
+        <div class="section-container">
+            <h2 class="section-title">このフォーラムについて</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-card-title">実践事例を学ぶ</div>
+                    <div class="concept-card-text">地域の建設企業が実装したDX・ICT推進の取り組みを、経営層から現場まで直接共有。理論ではなく、実行されたプロジェクトの事例から学びます。</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-card-title">異業種の視点を得る</div>
+                    <div class="concept-card-text">異なる課題解決のアプローチに触れることで、自社のDX推進に新しい視点をもたらします。競争相手ではなく、共に進む仲間との交流の場です。</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-card-title">ネットワークを構築</div>
+                    <div class="concept-card-text">同じ課題に取り組む建設業関係者とのつながりを深め、その後の業務協力やベストプラクティス共有のコミュニティを形成します。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== タイムテーブル ===== -->
+    <section class="schedule">
+        <div class="section-container">
+            <h2 class="section-title">プログラム</h2>
+            <div class="schedule-list">
+                <div class="schedule-item opening">
+                    <div class="schedule-time">14:00–14:10</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">オープニング</div>
+                        <div class="schedule-desc">イベント趣旨説明、参加企業紹介</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">14:10–14:55</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">実践事例発表 Vol.1</div>
+                        <div class="schedule-speaker">入佐学さん（株式会社屋部土建）</div>
+                        <div class="schedule-desc">テーマはリクエスト予定</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">14:55–15:40</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">実践事例発表 Vol.2</div>
+                        <div class="schedule-speaker">新田唯史さん（株式会社美保テクノス）</div>
+                        <div class="schedule-desc">テーマはリクエスト予定</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-time">15:40–16:25</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">実践事例発表 Vol.3</div>
+                        <div class="schedule-speaker">真坂紀至さん（株式会社砂子組）</div>
+                        <div class="schedule-desc">テーマはリクエスト予定</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item closing">
+                    <div class="schedule-time">16:25–17:00</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">パネルディスカッション・Q&amp;A</div>
+                        <div class="schedule-desc">3登壇者によるパネルディスカッション、参加者からの質問対応</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item networking">
+                    <div class="schedule-time">17:00–18:30</div>
+                    <div class="schedule-content">
+                        <div class="schedule-title">懇親会</div>
+                        <div class="schedule-desc">登壇者とのネットワーキング、参加企業間の交流</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 登壇者 ===== -->
+    <section class="speakers">
+        <div class="section-container">
+            <h2 class="section-title">登壇企業・登壇者</h2>
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <div class="speaker-avatar">
+                        <img src="images/irisa.jpg" alt="入佐学さん">
+                    </div>
+                    <div class="speaker-name">入佐学</div>
+                    <div class="speaker-company">株式会社屋部土建</div>
+                    <div class="speaker-title">常務</div>
+                    <div class="speaker-bio">建設企業のDX推進における実装フェーズと組織課題に精通。現場改善と経営効率化の両立を実現。</div>
+                    <div class="speaker-topic">講演テーマ：リクエスト予定</div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-avatar">
+                        <img src="images/nitta.jpg" alt="新田唯史さん">
+                    </div>
+                    <div class="speaker-name">新田唯史</div>
+                    <div class="speaker-company">株式会社美保テクノス</div>
+                    <div class="speaker-title">職位未定</div>
+                    <div class="speaker-bio">BIM（Building Information Modeling）導入による建設業のデジタル化を推進。設計から施工、竣工後の管理まで、BIMを活用した業務効率化と生産性向上を実現。</div>
+                    <div class="speaker-topic">講演テーマ：建設業のBIM導入と実装戦略（予定）</div>
+                </div>
+
+                <div class="speaker-card">
+                    <div class="speaker-avatar">
+                        <img src="images/masaka.jpg" alt="真坂紀至さん">
+                    </div>
+                    <div class="speaker-name">真坂紀至</div>
+                    <div class="speaker-company">株式会社砂子組</div>
+                    <div class="speaker-title">常務執行役員</div>
+                    <div class="speaker-bio">大規模建設プロジェクトのDX化を主導。経営視点から現場まで一貫したICT推進戦略を展開。</div>
+                    <div class="speaker-topic">講演テーマ：リクエスト予定</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== イベント情報 ===== -->
+    <section class="event-info">
+        <div class="section-container">
+            <h2 class="section-title">イベント情報</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">開催日時</div>
+                    <div class="info-content">2025年11月10日（火）<br>14:00–17:00<br>（懇親会 17:00–18:30）</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">開催会場</div>
+                    <div class="info-content">東京都港区北青山3-12-7</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">参加対象</div>
+                    <div class="info-content">建設企業の経営層、現場責任者、DX推進担当者、IT関連企業</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">参加費</div>
+                    <div class="info-content">無料</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">定員</div>
+                    <div class="info-content">会場40名 / オンライン40名</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">CPDS</div>
+                    <div class="info-content">取得可<br>（3時間認定予定）</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">主催</div>
+                    <div class="info-content">株式会社KENZO</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2>参加申込</h2>
+            <button class="cta-button">申込フォームへ</button>
+            <p class="cta-note">お申込いただいた方には、開催1週間前に詳細情報をお送りします。</p>
+        </div>
+    </section>
+
+    <!-- ===== フッター ===== -->
+    <footer>
+        <div>
+            <div style="margin-bottom: 12px;">KENZOサミット – 旗手 – 2026冬</div>
+            <div style="font-size: 12px; opacity: 0.7;">主催：株式会社KENZO | 地域建設業のDX・ICT推進を加速する実践事例共有フォーラム</div>
+        </div>
+    </footer>
+</body>
+</html>
