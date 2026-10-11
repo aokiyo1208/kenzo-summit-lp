@@ -245,23 +245,28 @@
             <input type="tel" id="tel" autocomplete="tel">
         </div>
         <div class="field">
-            <label>参加方法<span class="req">必須</span></label>
+            <label>受講方法<span class="req">必須</span></label>
             <div class="choices">
-                <input type="radio" name="how" id="how1" value="会場参加">
-                <label class="chip" for="how1">会場参加</label>
-                <input type="radio" name="how" id="how2" value="オンライン参加">
-                <label class="chip" for="how2">オンライン参加</label>
+                <input type="radio" name="how" id="how1" value="会場">
+                <label class="chip" for="how1">会場</label>
+                <input type="radio" name="how" id="how2" value="ZOOM">
+                <label class="chip" for="how2">ZOOM</label>
             </div>
             <div class="note">会場40名 / オンライン40名（先着順）</div>
         </div>
         <div class="field">
-            <label>CPDS単位の取得</label>
+            <label>CPDS単位</label>
             <div class="choices">
-                <input type="radio" name="cpds" id="cpds1" value="希望する">
-                <label class="chip" for="cpds1">希望する</label>
-                <input type="radio" name="cpds" id="cpds2" value="希望しない">
-                <label class="chip" for="cpds2">希望しない</label>
+                <input type="radio" name="cpds" id="cpds1" value="必要">
+                <label class="chip" for="cpds1">必要</label>
+                <input type="radio" name="cpds" id="cpds2" value="不必要">
+                <label class="chip" for="cpds2">不必要</label>
             </div>
+        </div>
+        <div class="field" id="cpdsno-field" style="display: none;">
+            <label for="cpdsno">CPDS技術者番号</label>
+            <input type="text" id="cpdsno" inputmode="numeric">
+            <div class="note">CPDS単位が「必要」の方はご入力ください。</div>
         </div>
         <div class="field">
             <label>懇親会（17:00–18:30）</label>
@@ -278,7 +283,7 @@
         </div>
 
         <button type="submit" class="btn">メールで申し込む</button>
-        <div class="err" id="err">必須項目（お名前・会社名・メールアドレス・参加方法）をご入力ください。</div>
+        <div class="err" id="err">必須項目（お名前・会社名・メールアドレス・受講方法）をご入力ください。</div>
         <p class="hint">送信ボタンを押すと、入力内容が入ったメールが作成されます。そのまま送信してください。</p>
 
         <div class="fallback" id="fb">
@@ -320,8 +325,9 @@
                 '役職: ' + (val('title') || '-'),
                 'メール: ' + val('email'),
                 '電話: ' + (val('tel') || '-'),
-                '参加方法: ' + picked('how'),
+                '受講方法: ' + picked('how'),
                 'CPDS: ' + (picked('cpds') || '-'),
+                'CPDS番号: ' + (val('cpdsno') || '-'),
                 '懇親会: ' + (picked('party') || '-'),
                 '備考: ' + (val('memo') || '-')
             ];
@@ -335,6 +341,13 @@
             location.href = 'mailto:' + TO +
                 '?subject=' + encodeURIComponent(subject) +
                 '&body=' + encodeURIComponent(body);
+        });
+
+        document.querySelectorAll('input[name="cpds"]').forEach(function (r) {
+            r.addEventListener('change', function () {
+                document.getElementById('cpdsno-field').style.display =
+                    picked('cpds') === '必要' ? 'block' : 'none';
+            });
         });
 
         document.getElementById('copybtn').addEventListener('click', function () {
