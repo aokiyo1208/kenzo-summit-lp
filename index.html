@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>KENZOサミット – 旗手 – 2026冬｜地域建設業DXフォーラム</title>
+    <title>KENZO SUMMIT 2026｜建設の未来を、先頭から切り拓く。</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -39,48 +39,47 @@
             background: var(--black);
             color: #f5f5f7;
             text-align: center;
-            padding: clamp(110px, 16vw, 170px) 22px clamp(90px, 13vw, 150px);
+            padding: clamp(40px, 6vw, 72px) 0 clamp(48px, 7vw, 84px);
             overflow: hidden;
         }
 
-        .hero-date {
-            font-size: 17px;
-            color: #a1a1a6;
-            margin-bottom: 28px;
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+
+        .hero-kv {
+            width: 100%;
+            border-radius: clamp(12px, 2vw, 24px);
+            display: block;
             opacity: 0;
             animation: rise 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) 0.15s forwards;
         }
 
-        .hero h1 {
-            font-size: clamp(40px, 8.5vw, 88px);
+        .hero-tagline {
+            font-size: clamp(24px, 3.6vw, 40px);
             font-weight: 700;
-            letter-spacing: -0.015em;
-            line-height: 1.08;
+            letter-spacing: -0.01em;
+            margin-top: 36px;
             opacity: 0;
             animation: rise 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) 0.3s forwards;
         }
 
-        .hero h1 .flag {
-            display: block;
-            background: linear-gradient(100deg, #0a84ff 10%, #4dc4ff 45%, #9bf0ff 90%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            padding-bottom: 0.08em;
-        }
-
-        .hero-sub {
-            font-size: clamp(19px, 2.6vw, 26px);
-            font-weight: 500;
-            color: #d2d2d7;
-            margin-top: 30px;
-            line-height: 1.5;
+        .hero-date {
+            font-size: 15px;
+            color: #a1a1a6;
+            margin-top: 16px;
             opacity: 0;
             animation: rise 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) 0.45s forwards;
         }
 
         .hero-cta {
-            margin-top: 44px;
+            margin-top: 28px;
             opacity: 0;
             animation: rise 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) 0.6s forwards;
         }
@@ -91,7 +90,7 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .hero-date, .hero h1, .hero-sub, .hero-cta {
+            .hero-kv, .hero-tagline, .hero-date, .hero-cta {
                 animation: none;
                 opacity: 1;
             }
@@ -125,10 +124,10 @@
         }
 
         .section-head h2 {
-            font-size: clamp(32px, 5vw, 52px);
+            font-size: clamp(30px, 4.6vw, 48px);
             font-weight: 700;
             letter-spacing: -0.01em;
-            line-height: 1.15;
+            line-height: 1.25;
         }
 
         .section-head p {
@@ -144,7 +143,7 @@
             font-size: clamp(22px, 3.2vw, 33px);
             font-weight: 600;
             letter-spacing: -0.01em;
-            line-height: 1.45;
+            line-height: 1.5;
             color: var(--ink-3);
             text-align: center;
         }
@@ -154,30 +153,157 @@
             font-weight: 600;
         }
 
+        .statement-lead {
+            font-size: 18px;
+            color: var(--ink-2);
+            line-height: 2;
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .statement-target {
+            font-size: 14px;
+            color: var(--ink-3);
+            text-align: center;
+            margin-top: 28px;
+        }
+
+        /* ===== 変革のヒント（prose） ===== */
+        .insight { background: var(--paper-2); }
+
+        .insight-prose p {
+            font-size: 18px;
+            color: var(--ink-2);
+            line-height: 2.05;
+        }
+
+        .insight-prose p + p { margin-top: 26px; }
+
+        .insight-close {
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            text-align: center;
+            margin-top: clamp(40px, 6vw, 60px);
+            line-height: 1.5;
+        }
+
+        /* ===== 3つのこと ===== */
+        .gains { background: var(--paper); }
+
         .concept-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 48px;
-            margin-top: clamp(56px, 8vw, 88px);
+            gap: 28px;
+        }
+
+        .concept {
+            background: var(--paper-2);
+            border-radius: 28px;
+            padding: 40px 30px 36px;
+        }
+
+        .concept-num {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--blue);
+            letter-spacing: 0.08em;
+            font-variant-numeric: tabular-nums;
         }
 
         .concept h3 {
             font-size: 21px;
-            font-weight: 600;
-            margin-bottom: 10px;
+            font-weight: 700;
+            margin-top: 10px;
+            line-height: 1.4;
         }
 
-        .concept p {
+        .concept .concept-lead {
             font-size: 15px;
+            font-weight: 600;
+            margin-top: 14px;
+            line-height: 1.7;
+        }
+
+        .concept p.body {
+            font-size: 14px;
+            color: var(--ink-2);
+            line-height: 1.9;
+            margin-top: 10px;
+        }
+
+        /* ===== 登壇者 ===== */
+        .speakers { background: var(--paper-2); }
+
+        .speaker-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .speaker {
+            background: var(--paper);
+            border-radius: 28px;
+            padding: 44px 28px 38px;
+            text-align: center;
+        }
+
+        .speaker img {
+            width: 148px;
+            height: 148px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 26px;
+        }
+
+        .speaker-name {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .speaker-role {
+            font-size: 14px;
+            color: var(--ink-2);
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+
+        .speaker-company {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 14px;
+        }
+
+        .speaker-theme-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--hairline);
+            line-height: 1.6;
+        }
+
+        .speaker-theme-title.tbd {
+            color: var(--ink-3);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .speaker-bio {
+            font-size: 14px;
             color: var(--ink-2);
             line-height: 1.8;
+            margin-top: 12px;
+            text-align: left;
         }
 
         /* ===== プログラム ===== */
-        .schedule { background: var(--paper-2); }
+        .schedule { background: var(--paper); }
 
         .timeline {
-            background: var(--paper);
+            background: var(--paper-2);
             border-radius: 28px;
             padding: 16px 40px;
         }
@@ -207,63 +333,76 @@
             margin-top: 4px;
         }
 
-        /* ===== 登壇者 ===== */
-        .speakers { background: var(--paper); }
+        /* ===== こんな方に ===== */
+        .reco { background: var(--paper-2); }
 
-        .speaker-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-        }
-
-        .speaker {
-            background: var(--paper-2);
+        .reco-list {
+            background: var(--paper);
             border-radius: 28px;
-            padding: 44px 28px 38px;
+            padding: 20px 40px;
+            list-style: none;
+        }
+
+        .reco-list li {
+            padding: 20px 0 20px 36px;
+            position: relative;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .reco-list li + li { border-top: 1px solid var(--hairline); }
+
+        .reco-list li::before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            width: 8px;
+            height: 14px;
+            border-right: 2.5px solid var(--blue);
+            border-bottom: 2.5px solid var(--blue);
+            margin-top: -2px;
+        }
+
+        .reco-note {
             text-align: center;
-        }
-
-        .speaker img {
-            width: 148px;
-            height: 148px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            margin: 0 auto 26px;
-        }
-
-        .speaker-name {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-
-        .speaker-role {
             font-size: 15px;
             color: var(--ink-2);
-            margin-top: 4px;
+            margin-top: 28px;
         }
 
-        .speaker-company {
-            font-size: 16px;
-            font-weight: 600;
-            margin-top: 14px;
+        /* ===== 前回の様子 ===== */
+        .gallery { background: var(--black); }
+
+        .gallery .section-head h2 { color: #f5f5f7; }
+
+        .gallery .section-head p { color: #a1a1a6; }
+
+        .venue-photo {
+            width: 100%;
+            border-radius: 28px;
+            display: block;
         }
 
-        .speaker-bio {
-            font-size: 14px;
+        /* ===== コミュニティ ===== */
+        .community { background: var(--paper); }
+
+        .community-prose p {
+            font-size: 18px;
             color: var(--ink-2);
-            line-height: 1.8;
-            margin-top: 14px;
-            text-align: left;
+            line-height: 2.05;
         }
 
-        .speaker-theme {
-            font-size: 13px;
-            color: var(--ink-3);
-            margin-top: 18px;
-            padding-top: 16px;
-            border-top: 1px solid var(--hairline);
+        .community-prose p + p { margin-top: 26px; }
+
+        .community-close {
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            text-align: center;
+            margin-top: clamp(40px, 6vw, 60px);
+            line-height: 1.5;
         }
 
         /* ===== 開催概要 ===== */
@@ -300,13 +439,14 @@
             font-size: clamp(30px, 4.6vw, 48px);
             font-weight: 700;
             letter-spacing: -0.01em;
-            line-height: 1.2;
+            line-height: 1.3;
         }
 
         .cta p.lead {
             font-size: 19px;
             color: #a1a1a6;
             margin-top: 18px;
+            line-height: 1.9;
         }
 
         .cta .btn { margin-top: 40px; }
@@ -329,13 +469,13 @@
 
         /* ===== レスポンシブ ===== */
         @media (max-width: 820px) {
-            .concept-row, .speaker-row { grid-template-columns: 1fr; gap: 36px; }
-            .speaker { max-width: 440px; margin: 0 auto; width: 100%; }
+            .concept-row, .speaker-row { grid-template-columns: 1fr; gap: 28px; }
+            .speaker, .concept { max-width: 440px; margin: 0 auto; width: 100%; }
             .facts { grid-template-columns: repeat(2, 1fr); gap: 32px 28px; }
         }
 
         @media (max-width: 540px) {
-            .timeline { padding: 8px 24px; border-radius: 22px; }
+            .timeline, .reco-list { padding: 8px 24px; border-radius: 22px; }
             .slot { grid-template-columns: 1fr; gap: 4px; padding: 20px 0; }
             .facts { grid-template-columns: 1fr; }
         }
@@ -344,82 +484,62 @@
 <body>
     <!-- ヒーロー -->
     <header class="hero">
-        <p class="hero-date">2025.11.10（火）14:00–17:00｜東京・北青山</p>
-        <h1>KENZOサミット<span class="flag">旗手</span></h1>
-        <p class="hero-sub">地域建設業のDX・ICT推進を加速する<br>実践事例共有フォーラム</p>
-        <div class="hero-cta"><a class="btn" href="form.html">参加を申し込む</a></div>
+        <div class="wrap">
+            <h1 class="sr-only">KENZO SUMMIT 2026｜建設の未来を、先頭から切り拓く。</h1>
+            <img class="hero-kv" src="images/hero.jpg" alt="KENZO Summit 2026 ― 建設業界DX／ICTを先導する旗手たちによる事例発表と交流の場 2026年11月10日（火）">
+            <p class="hero-tagline">建設の未来を、先頭から切り拓く。</p>
+            <p class="hero-date">2026.11.10（火）14:00–17:00｜東京・北青山｜参加費無料</p>
+            <div class="hero-cta"><a class="btn" href="form.html">参加を申し込む</a></div>
+        </div>
     </header>
 
-    <!-- ステートメント＋コンセプト -->
+    <!-- ステートメント -->
     <section class="statement">
         <div class="wrap">
-            <p class="statement-text narrow">理論ではなく、<strong style="white-space: nowrap;">実際に動かしたプロジェクト</strong>を。地域建設業の現場で生まれた実践を、<strong>経営層から現場まで</strong>が直接語ります。</p>
-            <div class="concept-row">
-                <div class="concept">
-                    <h3>実践事例を学ぶ</h3>
-                    <p>地域の建設企業が実装したDX・ICT推進の取り組みを直接共有。実行されたプロジェクトの事例から学びます。</p>
-                </div>
-                <div class="concept">
-                    <h3>異業種の視点を得る</h3>
-                    <p>異なる課題解決のアプローチに触れることで、自社のDX推進に新しい視点をもたらします。競争相手ではなく、共に進む仲間との交流の場です。</p>
-                </div>
-                <div class="concept">
-                    <h3>ネットワークを築く</h3>
-                    <p>同じ課題に取り組む建設業関係者とのつながりを深め、業務協力やベストプラクティス共有のコミュニティを形成します。</p>
-                </div>
-            </div>
+            <p class="statement-text narrow">建設業界のDX／ICTを先導する実践者たちが集い、<strong>取り組みと成果</strong>を共有する。先頭を走る企業の実践から学び、<strong>自社の次の一歩</strong>を考える。</p>
+            <p class="statement-lead narrow">現場で何を変えたのか。どのような課題に向き合い、どう乗り越えたのか。<br>企業の垣根を越えて知見を共有し、建設業界の未来をともに切り拓くサミットです。</p>
+            <p class="statement-target">対象：建設業のDX・ICT推進担当者、現場の実務責任者、業務改善に取り組む方</p>
         </div>
     </section>
 
-    <!-- プログラム -->
-    <section class="schedule">
+    <!-- 変革のヒント -->
+    <section class="insight">
         <div class="wrap">
             <div class="section-head">
-                <h2>プログラム</h2>
-                <p>実践事例の発表45分×3本と、パネルディスカッション。</p>
+                <h2>変革のヒントは、<br>現場の実践にある。</h2>
             </div>
-            <div class="timeline">
-                <div class="slot">
-                    <div class="slot-time">14:00–14:10</div>
-                    <div>
-                        <div class="slot-title">オープニング</div>
-                        <div class="slot-note">イベント趣旨説明、参加企業紹介</div>
-                    </div>
+            <div class="insight-prose narrow">
+                <p>DX／ICTの活用が求められる一方で、実際に業務を変え、現場に定着させるには多くの課題があります。技術を導入すれば、すべてが変わるわけではありません。業務の進め方を見直し、周囲を巻き込み、試行錯誤を重ねながら、少しずつ成果につなげていく必要があります。</p>
+                <p>その過程には、実践した企業だからこそ語れる知見があります。KENZO SUMMITは、建設業界のDX／ICTを先導する企業が、自社で取り組んできた実践や成果を共有する場です。成功したことだけでなく、挑戦の過程で得た気づきや工夫も共有する。そこから生まれた学びを、次の企業の実践につなげていく。</p>
+            </div>
+            <p class="insight-close">一社の経験を、業界全体の知見へ。<br>それが、KENZO SUMMITの目指す姿です。</p>
+        </div>
+    </section>
+
+    <!-- 得られる3つのこと -->
+    <section class="gains">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>KENZO SUMMITで得られる<br>3つのこと</h2>
+            </div>
+            <div class="concept-row">
+                <div class="concept">
+                    <div class="concept-num">01</div>
+                    <h3>実践に基づく知見</h3>
+                    <p class="concept-lead">実際の取り組みから、現場で活かせるヒントを得る。</p>
+                    <p class="body">実際にDX／ICTを推進してきた企業から、取り組みの背景や進め方、成果を学びます。一般論ではなく、現場での経験に基づく知見に触れられます。</p>
                 </div>
-                <div class="slot">
-                    <div class="slot-time">14:10–14:55</div>
-                    <div>
-                        <div class="slot-title">実践事例発表 Vol.1</div>
-                        <div class="slot-note">入佐学さん（株式会社屋部土建）｜テーマはリクエスト予定</div>
-                    </div>
+                <div class="concept">
+                    <div class="concept-num">02</div>
+                    <h3>自社の次の一歩</h3>
+                    <p class="concept-lead">他社の挑戦を、自社の行動につなげる。</p>
+                    <p class="body">他社の取り組みを知ることで、自社の課題や改善の可能性を見つめ直せます。学んだことを、自社の業務改善やDX推進に活かすきっかけを得られます。</p>
                 </div>
-                <div class="slot">
-                    <div class="slot-time">14:55–15:40</div>
-                    <div>
-                        <div class="slot-title">実践事例発表 Vol.2</div>
-                        <div class="slot-note">新田唯史さん（美保テクノス株式会社）｜「BIMはプロセス ～情報マネジメントとBIMの価値～」</div>
-                    </div>
-                </div>
-                <div class="slot">
-                    <div class="slot-time">15:40–16:25</div>
-                    <div>
-                        <div class="slot-title">実践事例発表 Vol.3</div>
-                        <div class="slot-note">真坂紀至さん（株式会社砂子組）｜「生産性向上に向けたICTの推進」</div>
-                    </div>
-                </div>
-                <div class="slot">
-                    <div class="slot-time">16:25–17:00</div>
-                    <div>
-                        <div class="slot-title">パネルディスカッション・Q&amp;A</div>
-                        <div class="slot-note">3登壇者によるパネルディスカッション、参加者からの質問対応</div>
-                    </div>
-                </div>
-                <div class="slot">
-                    <div class="slot-time">17:00–18:30</div>
-                    <div>
-                        <div class="slot-title">懇親会</div>
-                        <div class="slot-note">登壇者とのネットワーキング、参加企業間の交流（希望者）</div>
-                    </div>
+                <div class="concept">
+                    <div class="concept-num">03</div>
+                    <h3>実践者同士のつながり</h3>
+                    <p class="concept-lead">企業の垣根を越えて、学び合う。</p>
+                    <p class="body">同じ課題に向き合う建設業界の実務者と交流し、情報や経験を共有できます。一度の参加で終わらず、継続的に学び合える関係をつくることを目指します。</p>
                 </div>
             </div>
         </div>
@@ -429,35 +549,132 @@
     <section class="speakers">
         <div class="wrap">
             <div class="section-head">
-                <h2>登壇企業・登壇者</h2>
-                <p>地域建設業のDXを牽引する3社が登壇します。</p>
+                <h2>建設の未来を先導する、<br>実践者たち。</h2>
+                <p class="narrow">自社でDX／ICTの活用に取り組んできた建設企業の実践者が登壇。それぞれ異なる課題に向き合いながら、業務や組織を変えてきた旗手たちの経験を通じて、建設業界の変革を考えます。</p>
             </div>
             <div class="speaker-row">
                 <div class="speaker">
                     <img src="images/irisa.jpg" alt="入佐学さん">
                     <div class="speaker-name">入佐 学</div>
-                    <div class="speaker-role">常務執行役員</div>
+                    <div class="speaker-role">常務執行役員 事業支援本部担当</div>
                     <div class="speaker-company">株式会社屋部土建</div>
-                    <p class="speaker-bio">建設企業のDX推進における実装フェーズと組織課題に精通。現場改善と経営効率化の両立を実現。</p>
-                    <div class="speaker-theme">講演テーマ：リクエスト予定</div>
+                    <div class="speaker-theme-title tbd">講演テーマ：確定後に掲載</div>
+                    <p class="speaker-bio">建設企業におけるDXの実践と、組織として取り組みを進めるうえでの課題を共有します。</p>
                 </div>
                 <div class="speaker">
                     <img src="images/nitta.jpg" alt="新田唯史さん">
                     <div class="speaker-name">新田 唯史</div>
-                    <div class="speaker-role">取締役</div>
+                    <div class="speaker-role">取締役 BIM戦略部長兼設計部担当部長<br>兼 DX推進担当</div>
                     <div class="speaker-company">美保テクノス株式会社</div>
-                    <p class="speaker-bio">2004年にAutodesk Revitを導入し、全国でも先駆けてBIMに取り組む。地場ゼネコンとして実現可能なBIMへのアプローチと、そこで生み出されるBIMの価値を事例とともに語る。</p>
-                    <div class="speaker-theme">講演テーマ：BIMはプロセス ～情報マネジメントとBIMの価値～</div>
+                    <div class="speaker-theme-title">BIMはプロセス<br>～情報マネジメントとBIMの価値～</div>
+                    <p class="speaker-bio">2004年からAutodesk Revitを導入し、BIMの活用に取り組んできた実践者。BIMを単なる3Dモデルの作成にとどめず、情報マネジメントの観点から捉え、その価値と実践を共有します。</p>
                 </div>
                 <div class="speaker">
                     <img src="images/masaka.jpg" alt="真坂紀至さん">
                     <div class="speaker-name">真坂 紀至</div>
                     <div class="speaker-role">常務執行役員 企画営業部 部長</div>
                     <div class="speaker-company">株式会社砂子組</div>
-                    <p class="speaker-bio">若手・女性人材の採用戦略や情報発信・PRの成功事例を交え、経営視点から採用活動から現場業務まで一貫したICT活用の取り組みを紹介する。</p>
-                    <div class="speaker-theme">講演テーマ：生産性向上に向けたICTの推進</div>
+                    <div class="speaker-theme-title">生産性向上に向けたICTの推進</div>
+                    <p class="speaker-bio">採用や情報発信から現場業務まで、ICT活用の取り組みを紹介。建設企業の生産性向上に向けて、どのようにデジタル技術を活かしていくかを考えます。</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- プログラム -->
+    <section class="schedule">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>PROGRAM</h2>
+                <p>当日のプログラム</p>
+            </div>
+            <div class="timeline">
+                <div class="slot">
+                    <div class="slot-time">14:00–14:10</div>
+                    <div>
+                        <div class="slot-title">オープニング</div>
+                        <div class="slot-note">開催趣旨の共有と参加企業の紹介。サミットの目的と、実践者同士で学び合う意義を共有します。</div>
+                    </div>
+                </div>
+                <div class="slot">
+                    <div class="slot-time">14:10–14:55</div>
+                    <div>
+                        <div class="slot-title">実践事例発表 Vol.1｜入佐 学（株式会社屋部土建）</div>
+                        <div class="slot-note">建設企業におけるDXの実践と、組織として取り組みを進めるうえでの課題について。</div>
+                    </div>
+                </div>
+                <div class="slot">
+                    <div class="slot-time">14:55–15:40</div>
+                    <div>
+                        <div class="slot-title">実践事例発表 Vol.2｜新田 唯史（美保テクノス株式会社）</div>
+                        <div class="slot-note">「BIMはプロセス ～情報マネジメントとBIMの価値～」BIMを通じた情報マネジメントと、その価値について。</div>
+                    </div>
+                </div>
+                <div class="slot">
+                    <div class="slot-time">15:40–16:25</div>
+                    <div>
+                        <div class="slot-title">実践事例発表 Vol.3｜真坂 紀至（株式会社砂子組）</div>
+                        <div class="slot-note">「生産性向上に向けたICTの推進」生産性向上に向けたICT活用の実践について。</div>
+                    </div>
+                </div>
+                <div class="slot">
+                    <div class="slot-time">16:25–17:00</div>
+                    <div>
+                        <div class="slot-title">パネルディスカッション・Q&amp;A</div>
+                        <div class="slot-note">登壇者3名によるディスカッション。各社の取り組みや課題、これからの建設業界について議論します。参加者からの質問を通じて、講演内容をさらに深掘りします。</div>
+                    </div>
+                </div>
+                <div class="slot">
+                    <div class="slot-time">17:00–18:30</div>
+                    <div>
+                        <div class="slot-title">交流会（希望者）</div>
+                        <div class="slot-note">登壇者や参加者同士で、講演で得た気づきや日々の課題を共有します。新たなつながりや、次の実践のきっかけを生み出す時間です。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- こんな方におすすめ -->
+    <section class="reco">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>こんな方におすすめです。</h2>
+            </div>
+            <ul class="reco-list narrow">
+                <li>建設業のDX／ICT推進を担当している方</li>
+                <li>現場の業務改善や生産性向上に取り組んでいる方</li>
+                <li>デジタル技術を導入したものの、活用や定着に課題を感じている方</li>
+                <li>他社がどのようにDX／ICTを進めているのか知りたい方</li>
+                <li>社内でDX推進を担う仲間や、相談できるつながりを求めている方</li>
+                <li>建設業界の実践者同士で知見を共有したい方</li>
+            </ul>
+            <p class="reco-note">これから取り組みを始める方も、すでに実践を進めている方も歓迎します。</p>
+        </div>
+    </section>
+
+    <!-- 前回の様子 -->
+    <section class="gallery">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>前回の様子</h2>
+                <p>KENZOサミット 2025冬「建設の未来は、現場から動き出す」より。</p>
+            </div>
+            <img class="venue-photo" src="images/venue.jpg" alt="前回のKENZOサミット会場の様子">
+        </div>
+    </section>
+
+    <!-- コミュニティ -->
+    <section class="community">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>イベント当日だけで終わらない、<br>実践者のつながりへ。</h2>
+            </div>
+            <div class="community-prose narrow">
+                <p>建設業界のDX／ICT推進に、すべての企業に共通する一つの正解があるわけではありません。だからこそ、それぞれの企業が経験を共有し、互いの取り組みから学ぶことに意味があります。</p>
+                <p>KENZO SUMMITは、実践事例を聞いて終わるイベントではなく、建設業界の実務者がつながり、知見を持ち寄り、次の挑戦を生み出すコミュニティを目指しています。</p>
+            </div>
+            <p class="community-close">一社の実践が、次の企業のヒントになる。<br>その連鎖を、ここから。</p>
         </div>
     </section>
 
@@ -465,20 +682,29 @@
     <section class="about">
         <div class="wrap">
             <div class="section-head">
-                <h2>開催概要</h2>
+                <h2>OUTLINE</h2>
+                <p>開催概要</p>
             </div>
             <dl class="facts">
                 <div class="fact">
+                    <dt>イベント名</dt>
+                    <dd>KENZO SUMMIT 2026</dd>
+                </div>
+                <div class="fact">
+                    <dt>コンセプト</dt>
+                    <dd>建設の未来を、先頭から切り拓く。</dd>
+                </div>
+                <div class="fact">
                     <dt>開催日時</dt>
-                    <dd>2025年11月10日（火）14:00–17:00<br>懇親会 17:00–18:30</dd>
+                    <dd>2026年11月10日（火）14:00–17:00<br>交流会 17:00–18:30</dd>
                 </div>
                 <div class="fact">
                     <dt>会場</dt>
                     <dd>東京都港区北青山3-12-7</dd>
                 </div>
                 <div class="fact">
-                    <dt>参加方法</dt>
-                    <dd>会場参加またはオンライン参加</dd>
+                    <dt>開催形式</dt>
+                    <dd>会場参加・オンライン参加</dd>
                 </div>
                 <div class="fact">
                     <dt>定員</dt>
@@ -493,10 +719,6 @@
                     <dd>取得可（3時間認定予定）</dd>
                 </div>
                 <div class="fact">
-                    <dt>参加対象</dt>
-                    <dd>建設企業の経営層・現場責任者、DX推進担当者、IT関連企業</dd>
-                </div>
-                <div class="fact">
                     <dt>主催</dt>
                     <dd>株式会社KENZO</dd>
                 </div>
@@ -507,16 +729,16 @@
     <!-- CTA -->
     <section class="cta" id="apply">
         <div class="wrap">
-            <h2>参加申込</h2>
-            <p class="lead">会場・オンラインともに無料でご参加いただけます。</p>
-            <a class="btn" href="form.html">申込フォームへ</a>
+            <h2>建設の未来を、<br>先頭から切り拓く。</h2>
+            <p class="lead narrow">他社の実践から学び、自社の次の一歩を考える。そして、その経験をまた誰かの挑戦につなげていく。<br>先頭を走る企業の実践が、次の挑戦者の道しるべになる。<br>建設業界の未来を、ともに切り拓きましょう。</p>
+            <a class="btn" href="form.html">参加を申し込む</a>
             <p class="cta-note">お申込みいただいた方には、開催1週間前に詳細情報をお送りします。</p>
         </div>
     </section>
 
     <footer>
-        <div>KENZOサミット – 旗手 – 2026冬</div>
-        <div>主催：株式会社KENZO｜地域建設業のDX・ICT推進を加速する実践事例共有フォーラム</div>
+        <div>KENZO SUMMIT 2026｜建設の未来を、先頭から切り拓く。</div>
+        <div>主催：株式会社KENZO</div>
     </footer>
 </body>
 </html>
