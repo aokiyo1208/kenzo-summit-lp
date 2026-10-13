@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>参加申込｜KENZOサミット – 旗手 – 2026冬</title>
+    <title>参加申込｜KENZO SUMMIT 2026</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -217,9 +217,9 @@
 </head>
 <body>
     <div class="top">
-        <a class="back" href="index.html">← KENZOサミット – 旗手 – 2026冬</a>
+        <a class="back" href="index.html">← KENZO SUMMIT 2026</a>
         <h1>参加申込</h1>
-        <p>2025.11.10（火）14:00–17:00｜東京・北青山｜参加費無料</p>
+        <p>2026.11.10（火）14:00–17:00｜東京・北青山｜参加費無料</p>
     </div>
 
     <form class="card" id="f" novalidate>
@@ -269,7 +269,7 @@
             <div class="note">CPDS単位が「必要」の方はご入力ください。</div>
         </div>
         <div class="field">
-            <label>懇親会（17:00–18:30）</label>
+            <label>交流会（17:00–18:30）</label>
             <div class="choices">
                 <input type="radio" name="party" id="party1" value="参加する">
                 <label class="chip" for="party1">参加する</label>
@@ -294,7 +294,7 @@
     </form>
 
     <footer>
-        <div>KENZOサミット – 旗手 – 2026冬｜主催：株式会社KENZO</div>
+        <div>KENZO SUMMIT 2026｜主催：株式会社KENZO</div>
         <div>お問い合わせ：yo.aoki@kenzo.tech</div>
     </footer>
 
@@ -318,7 +318,7 @@
             err.classList.remove('show');
 
             var lines = [
-                'KENZOサミット – 旗手 – 2026冬 参加申込',
+                'KENZO SUMMIT 2026 参加申込',
                 '',
                 'お名前: ' + val('name'),
                 '会社名: ' + val('company'),
@@ -328,11 +328,11 @@
                 '受講方法: ' + picked('how'),
                 'CPDS: ' + (picked('cpds') || '-'),
                 'CPDS番号: ' + (val('cpdsno') || '-'),
-                '懇親会: ' + (picked('party') || '-'),
+                '交流会: ' + (picked('party') || '-'),
                 '備考: ' + (val('memo') || '-')
             ];
             var body = lines.join('\n');
-            var subject = '【参加申込】KENZOサミット旗手2026冬（' + val('company') + ' ' + val('name') + '）';
+            var subject = '【参加申込】KENZO SUMMIT 2026（' + val('company') + ' ' + val('name') + '）';
 
             var fb = document.getElementById('fb');
             document.getElementById('fbtext').value = '宛先: ' + TO + '\n件名: ' + subject + '\n\n' + body;
