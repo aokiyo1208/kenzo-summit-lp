@@ -201,6 +201,19 @@
             cursor: pointer;
         }
 
+        .done {
+            display: none;
+            margin-top: 24px;
+            padding: 18px 20px;
+            border-radius: 14px;
+            background: #e8f5ec;
+            color: #1d7a3a;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .done.show { display: block; }
+
         .err {
             display: none;
             color: #d70015;
@@ -225,7 +238,7 @@
     <div class="top">
         <a class="back" href="index.html">← KENZO SUMMIT 2026</a>
         <h1>参加申込</h1>
-        <p>2026.11.10（火）14:00–17:00｜東京・北青山｜参加費無料</p>
+        <p>2026.11.10（火）14:00–17:00｜東京・飯田橋｜参加費無料</p>
     </div>
 
     <form class="card" id="f" novalidate>
@@ -291,12 +304,17 @@
             <textarea id="memo" rows="3"></textarea>
         </div>
 
-        <button type="submit" class="btn">メールで申し込む</button>
+        <button type="submit" class="btn" id="submitbtn">申し込む</button>
         <div class="err" id="err">必須項目（お名前・会社名・メールアドレス・受講方法）をご入力ください。</div>
-        <p class="hint">送信ボタンを押すと、入力内容が入ったメールが作成されます。そのまま送信してください。</p>
+        <p class="hint">送信ボタンを押すと、申込内容がそのまま事務局へ送信されます。</p>
+
+        <div class="done" id="done">
+            <strong>申込を受け付けました。</strong><br>
+            開催1週間前をめどに、ご入力のメールアドレスへ詳細情報をお送りします。
+        </div>
 
         <div class="fallback" id="fb">
-            <p>メールアプリが開かない場合は、以下の内容をコピーして <strong>yo.aoki@kenzo.tech</strong> 宛てにお送りください。</p>
+            <p>送信に失敗しました。お手数ですが、以下の内容をコピーして <strong>contact@kenzo.tech</strong> 宛てにメールでお送りください。</p>
             <textarea id="fbtext" readonly></textarea>
             <button type="button" class="copy" id="copybtn">内容をコピー</button>
         </div>
@@ -304,11 +322,11 @@
 
     <footer>
         <div>KENZO SUMMIT 2026｜主催：株式会社KENZO</div>
-        <div>お問い合わせ：yo.aoki@kenzo.tech</div>
+        <div>お問い合わせ：contact@kenzo.tech</div>
     </footer>
 
     <script>
-        var TO = 'yo.aoki@kenzo.tech';
+        var TO = 'contact@kenzo.tech';
         var form = document.getElementById('f');
 
         function val(id) { return document.getElementById(id).value.trim(); }
@@ -316,6 +334,8 @@
             var el = document.querySelector('input[name="' + name + '"]:checked');
             return el ? el.value : '';
         }
+
+        var ENDPOINT = 'https://formsubmit.co/ajax/' + TO;
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -326,30 +346,60 @@
             }
             err.classList.remove('show');
 
-            var lines = [
-                'KENZO SUMMIT 2026 参加申込',
-                '',
-                'お名前: ' + val('sei') + ' ' + val('mei'),
-                '会社名: ' + val('company'),
-                '役職: ' + (val('title') || '-'),
-                'メール: ' + val('email'),
-                '電話: ' + (val('tel') || '-'),
-                '受講方法: ' + picked('how'),
-                'CPDS: ' + (picked('cpds') || '-'),
-                'CPDS番号: ' + (val('cpdsno') || '-'),
-                '交流会: ' + (picked('party') || '-'),
-                '備考: ' + (val('memo') || '-')
-            ];
-            var body = lines.join('\n');
             var subject = '【参加申込】KENZO SUMMIT 2026（' + val('company') + ' ' + val('sei') + val('mei') + '）';
+            var payload = {
+                _subject: subject,
+                _template: 'table',
+                _replyto: val('email'),
+                'お名前': val('sei') + ' ' + val('mei'),
+                '会社名': val('company'),
+                '役職': val('title') || '-',
+                'メール': val('email'),
+                '電話': val('tel') || '-',
+                '受講方法': picked('how'),
+                'CPDS': picked('cpds') || '-',
+                'CPDS番号': val('cpdsno') || '-',
+                '交流会': picked('party') || '-',
+                '備考': val('memo') || '-'
+            };
 
-            var fb = document.getElementById('fb');
-            document.getElementById('fbtext').value = '宛先: ' + TO + '\n件名: ' + subject + '\n\n' + body;
-            fb.classList.add('show');
+            var btn = document.getElementById('submitbtn');
+            btn.disabled = true;
+            btn.textContent = '送信中…';
 
-            location.href = 'mailto:' + TO +
-                '?subject=' + encodeURIComponent(subject) +
-                '&body=' + encodeURIComponent(body);
+            fetch(ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(function (res) {
+                if (!res.ok) throw new Error('bad status');
+                return res.json();
+            }).then(function () {
+                document.getElementById('done').classList.add('show');
+                document.getElementById('fb').classList.remove('show');
+                btn.textContent = '送信しました';
+            }).catch(function () {
+                btn.disabled = false;
+                btn.textContent = '申し込む';
+                var lines = [
+                    'KENZO SUMMIT 2026 参加申込',
+                    '',
+                    'お名前: ' + val('sei') + ' ' + val('mei'),
+                    '会社名: ' + val('company'),
+                    '役職: ' + (val('title') || '-'),
+                    'メール: ' + val('email'),
+                    '電話: ' + (val('tel') || '-'),
+                    '受講方法: ' + picked('how'),
+                    'CPDS: ' + (picked('cpds') || '-'),
+                    'CPDS番号: ' + (val('cpdsno') || '-'),
+                    '交流会: ' + (picked('party') || '-'),
+                    '備考: ' + (val('memo') || '-')
+                ];
+                var body = lines.join('\n');
+                var fb = document.getElementById('fb');
+                document.getElementById('fbtext').value = '宛先: ' + TO + '\n件名: ' + subject + '\n\n' + body;
+                fb.classList.add('show');
+            });
         });
 
         document.querySelectorAll('input[name="cpds"]').forEach(function (r) {
