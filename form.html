@@ -347,12 +347,7 @@
             err.classList.remove('show');
 
             var subject = '【参加申込】KENZO SUMMIT 2026（' + val('company') + ' ' + val('sei') + val('mei') + '）';
-            var payload = {
-                _subject: subject,
-                _template: 'table',
-                _replyto: val('email'),
-                _cc: 'yo.aoki@kenzo.tech',
-                _webhook: 'https://script.google.com/macros/s/AKfycbwHUWmNoXxbT_B2Synjf0QxdtKLRkVR3lORC0Mmz6diSE87Mx-kK9PcHs-iqHbZwHW-/exec?key=kenzo2026hook',
+            var sheetData = {
                 'お名前': val('sei') + ' ' + val('mei'),
                 '会社名': val('company'),
                 '役職': val('title') || '-',
@@ -364,10 +359,27 @@
                 '交流会': picked('party') || '-',
                 '備考': val('memo') || '-'
             };
+            var payload = {
+                _subject: subject,
+                _template: 'table',
+                _replyto: val('email'),
+                _cc: 'yo.aoki@kenzo.tech'
+            };
+            for (var k in sheetData) { payload[k] = sheetData[k]; }
 
             var btn = document.getElementById('submitbtn');
             btn.disabled = true;
             btn.textContent = '送信中…';
+
+            // スプレッドシートへ即時反映（メール送信とは独立。失敗しても申込処理は継続）
+            var SHEET_HOOK = 'https://script.google.com/macros/s/AKfycbwHUWmNoXxbT_B2Synjf0QxdtKLRkVR3lORC0Mmz6diSE87Mx-kK9PcHs-iqHbZwHW-/exec?key=kenzo2026hook';
+            try {
+                fetch(SHEET_HOOK, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(sheetData)
+                }).catch(function () {});
+            } catch (ignore) {}
 
             fetch(ENDPOINT, {
                 method: 'POST',
