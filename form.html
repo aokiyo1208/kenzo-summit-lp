@@ -290,6 +290,16 @@
             <input type="text" id="cpdsno" inputmode="numeric">
             <div class="note">CPDS単位が「必要」の方はご入力ください。</div>
         </div>
+        <div class="field" role="group" aria-labelledby="cpd-label">
+            <label id="cpd-label">CPD単位<span class="req">必須</span></label>
+            <div class="choices">
+                <input type="radio" name="cpd" id="cpd1" value="必要" required>
+                <label class="chip" for="cpd1">必要</label>
+                <input type="radio" name="cpd" id="cpd2" value="不必要" required>
+                <label class="chip" for="cpd2">不必要</label>
+            </div>
+            <div class="note">建築CPDについてお選びください。</div>
+        </div>
         <div class="field">
             <label>交流会（17:00–18:30）</label>
             <div class="choices">
@@ -305,7 +315,7 @@
         </div>
 
         <button type="submit" class="btn" id="submitbtn">申し込む</button>
-        <div class="err" id="err">必須項目（お名前・会社名・メールアドレス・受講方法）をご入力ください。</div>
+        <div class="err" id="err">必須項目（お名前・会社名・メールアドレス・受講方法・CPD単位）をご入力ください。</div>
         <p class="hint">送信ボタンを押すと、申込内容がそのまま事務局へ送信されます。</p>
 
         <div class="done" id="done">
@@ -340,13 +350,15 @@
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             var err = document.getElementById('err');
-            if (!val('sei') || !val('mei') || !val('company') || !val('email') || !picked('how')) {
+            if (!val('sei') || !val('mei') || !val('company') || !val('email') || !picked('how') || !picked('cpd')) {
                 err.classList.add('show');
                 return;
             }
             err.classList.remove('show');
 
             var subject = '【参加申込】KENZO SUMMIT 2026（' + val('company') + ' ' + val('sei') + val('mei') + '）';
+            // 既存の備考列でもCPD希望を保存できるよう、元の備考を保持して追記
+            var memoWithCpd = (val('memo') ? val('memo') + '\n' : '') + 'CPD単位: ' + picked('cpd');
             var sheetData = {
                 'お名前': val('sei') + ' ' + val('mei'),
                 '会社名': val('company'),
@@ -356,8 +368,9 @@
                 '受講方法': picked('how'),
                 'CPDS': picked('cpds') || '-',
                 'CPDS番号': val('cpdsno') || '-',
+                'CPD単位': picked('cpd'),
                 '交流会': picked('party') || '-',
-                '備考': val('memo') || '-'
+                '備考': memoWithCpd
             };
             var payload = {
                 _subject: subject,
@@ -406,6 +419,7 @@
                     '受講方法: ' + picked('how'),
                     'CPDS: ' + (picked('cpds') || '-'),
                     'CPDS番号: ' + (val('cpdsno') || '-'),
+                    'CPD単位: ' + picked('cpd'),
                     '交流会: ' + (picked('party') || '-'),
                     '備考: ' + (val('memo') || '-')
                 ];
