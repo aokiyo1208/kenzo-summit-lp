@@ -319,12 +319,12 @@
         <p class="hint">送信ボタンを押すと、申込内容がそのまま事務局へ送信されます。</p>
 
         <div class="done" id="done">
-            <strong>申込を受け付けました。</strong><br>
-            開催1週間前をめどに、ご入力のメールアドレスへ詳細情報をお送りします。
+            <strong>受付結果は未確認です。</strong><br>
+            重複を避けるため再送せず、事務局へ受付状況をご確認ください。
         </div>
 
         <div class="fallback" id="fb">
-            <p>送信に失敗しました。お手数ですが、以下の内容をコピーして <strong>contact@kenzo.tech</strong> 宛てにメールでお送りください。</p>
+            <p>受付結果を確認できませんでした。重複申込を避けるため、この画面や再読み込み後のフォームから再送せず、<strong>contact@kenzo.tech</strong> へ受付状況をご確認ください。以下は送信を試みた内容です。</p>
             <textarea id="fbtext" readonly></textarea>
             <button type="button" class="copy" id="copybtn">内容をコピー</button>
         </div>
@@ -345,16 +345,19 @@
             return el ? el.value : '';
         }
 
+        var submissionStarted = false;
         var ENDPOINT = 'https://formsubmit.co/ajax/' + TO;
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
+            if (submissionStarted) return;
             var err = document.getElementById('err');
             if (!val('sei') || !val('mei') || !val('company') || !val('email') || !picked('how') || !picked('cpd')) {
                 err.classList.add('show');
                 return;
             }
             err.classList.remove('show');
+            submissionStarted = true;
 
             var subject = '【参加申込】KENZO SUMMIT 2026（' + val('company') + ' ' + val('sei') + val('mei') + '）';
             // 既存の備考列でもCPD希望を保存できるよう、元の備考を保持して追記
@@ -394,40 +397,33 @@
                 }).catch(function () {});
             } catch (ignore) {}
 
-            fetch(ENDPOINT, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify(payload)
-            }).then(function (res) {
-                if (!res.ok) throw new Error('bad status');
-                return res.json();
-            }).then(function () {
-                document.getElementById('done').classList.add('show');
-                document.getElementById('fb').classList.remove('show');
-                btn.textContent = '送信しました';
-            }).catch(function () {
-                btn.disabled = false;
-                btn.textContent = '申し込む';
-                var lines = [
-                    'KENZO SUMMIT 2026 参加申込',
-                    '',
-                    'お名前: ' + val('sei') + ' ' + val('mei'),
-                    '会社名: ' + val('company'),
-                    '役職: ' + (val('title') || '-'),
-                    'メール: ' + val('email'),
-                    '電話: ' + (val('tel') || '-'),
-                    '受講方法: ' + picked('how'),
-                    'CPDS: ' + (picked('cpds') || '-'),
-                    'CPDS番号: ' + (val('cpdsno') || '-'),
-                    'CPD単位: ' + picked('cpd'),
-                    '交流会: ' + (picked('party') || '-'),
-                    '備考: ' + (val('memo') || '-')
-                ];
-                var body = lines.join('\n');
-                var fb = document.getElementById('fb');
-                document.getElementById('fbtext').value = '宛先: ' + TO + '\n件名: ' + subject + '\n\n' + body;
-                fb.classList.add('show');
-            });
+            // 応急措置: 保存側の応答仕様を確認するまでは受付完了と断定しない。
+            // タイムアウトでも書き込み済みの可能性があるため、再送しない。
+            var fallbackLines = ['KENZO SUMMIT 2026 受付状況の確認', '',
+                'フォームから送信を試みました。新規申込ではなく、受付状況をご確認ください。', ''];
+            for (var field in sheetData) { fallbackLines.push(field + ': ' + sheetData[field]); }
+            document.getElementById('fbtext').value = '宛先: ' + TO +
+                '\n件名: 【受付状況の確認】KENZO SUMMIT 2026\n\n' + fallbackLines.join('\n');
+            function showUnconfirmed() {
+                btn.disabled = true;
+                btn.textContent = '受付結果は未確認です';
+                document.getElementById('done').classList.remove('show');
+                document.getElementById('fb').classList.add('show');
+            }
+            var statusTimer = setTimeout(showUnconfirmed, 15000);
+            function finishAttempt() {
+                clearTimeout(statusTimer);
+                showUnconfirmed();
+            }
+            try {
+                fetch(ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).then(finishAttempt, finishAttempt);
+            } catch (ignore) {
+                finishAttempt();
+            }
         });
 
         document.querySelectorAll('input[name="cpds"]').forEach(function (r) {
@@ -452,3 +448,4 @@
     </script>
 </body>
 </html>
+
