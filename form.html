@@ -241,7 +241,9 @@
         <p>2026.11.10（火）14:00–17:00｜東京・飯田橋｜参加費無料</p>
     </div>
 
-    <form class="card" id="f" novalidate>
+    <form class="card" id="f" method="post" novalidate>
+        <input type="hidden" id="submission-payload" name="payload">
+        <noscript><p>お申し込みにはJavaScriptを有効にしてください。難しい場合は事務局へお問い合わせください。</p></noscript>
         <div class="field">
             <label>お名前<span class="req">必須</span></label>
             <div class="name-row">
@@ -314,14 +316,9 @@
             <textarea id="memo" rows="3"></textarea>
         </div>
 
-        <button type="submit" class="btn" id="submitbtn">申し込む</button>
+        <button type="submit" class="btn" id="submitbtn" disabled>申し込む</button>
         <div class="err" id="err">必須項目（お名前・会社名・メールアドレス・受講方法・CPD単位）をご入力ください。</div>
-        <p class="hint">送信ボタンを押すと、申込内容がそのまま事務局へ送信されます。</p>
-
-        <div class="done" id="done">
-            <strong>受付結果は未確認です。</strong><br>
-            重複を避けるため再送せず、事務局へ受付状況をご確認ください。
-        </div>
+        <p class="hint">送信後、Google Apps Scriptの受付結果ページへ移動します。受付番号が表示されたら受付完了です。</p>
 
         <div class="fallback" id="fb">
             <p>受付結果を確認できませんでした。重複申込を避けるため、この画面や再読み込み後のフォームから再送せず、<strong>contact@kenzo.tech</strong> へ受付状況をご確認ください。以下は送信を試みた内容です。</p>
@@ -345,21 +342,39 @@
             return el ? el.value : '';
         }
 
+        document.getElementById('submitbtn').disabled = false;
         var submissionStarted = false;
-        var ENDPOINT = 'https://formsubmit.co/ajax/' + TO;
+        var SHEET_HOOK = 'https://script.google.com/macros/s/AKfycbwHUWmNoXxbT_B2Synjf0QxdtKLRkVR3lORC0Mmz6diSE87Mx-kK9PcHs-iqHbZwHW-/exec?key=kenzo2026hook';
+        form.action = SHEET_HOOK;
+
+        function newRequestId() {
+            if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+            var bytes = new Uint8Array(16);
+            crypto.getRandomValues(bytes);
+            bytes[6] = (bytes[6] & 15) | 64;
+            bytes[8] = (bytes[8] & 63) | 128;
+            var hex = Array.from(bytes, function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+            return hex.slice(0, 8) + '-' + hex.slice(8, 12) + '-' + hex.slice(12, 16) + '-' + hex.slice(16, 20) + '-' + hex.slice(20);
+        }
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             if (submissionStarted) return;
             var err = document.getElementById('err');
-            if (!val('sei') || !val('mei') || !val('company') || !val('email') || !picked('how') || !picked('cpd')) {
+            if (!val('sei') || !val('mei') || !val('company') || !val('email') || !picked('how') || !picked('cpd') || !document.getElementById('email').validity.valid) {
                 err.classList.add('show');
                 return;
             }
             err.classList.remove('show');
+            var requestId;
+            try {
+                requestId = newRequestId();
+            } catch (ignore) {
+                err.textContent = '安全な受付番号を作成できませんでした。ブラウザを更新するか、事務局へお問い合わせください。';
+                err.classList.add('show');
+                return;
+            }
             submissionStarted = true;
-
-            var subject = '【参加申込】KENZO SUMMIT 2026（' + val('company') + ' ' + val('sei') + val('mei') + '）';
             // 既存の備考列でもCPD希望を保存できるよう、元の備考を保持して追記
             var memoWithCpd = (val('memo') ? val('memo') + '\n' : '') + 'CPD単位: ' + picked('cpd');
             var sheetData = {
@@ -375,54 +390,36 @@
                 '交流会': picked('party') || '-',
                 '備考': memoWithCpd
             };
-            var payload = {
-                _subject: subject,
-                _template: 'table',
-                _replyto: val('email'),
-                _cc: 'yo.aoki@kenzo.tech'
-            };
-            for (var k in sheetData) { payload[k] = sheetData[k]; }
-
+            sheetData.requestId = requestId;
+            document.getElementById('submission-payload').value = JSON.stringify(sheetData);
             var btn = document.getElementById('submitbtn');
             btn.disabled = true;
-            btn.textContent = '送信中…';
+            btn.textContent = '受付結果へ移動中…';
 
-            // スプレッドシートへ即時反映（メール送信とは独立。失敗しても申込処理は継続）
-            var SHEET_HOOK = 'https://script.google.com/macros/s/AKfycbwHUWmNoXxbT_B2Synjf0QxdtKLRkVR3lORC0Mmz6diSE87Mx-kK9PcHs-iqHbZwHW-/exec?key=kenzo2026hook';
-            try {
-                fetch(SHEET_HOOK, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify(sheetData)
-                }).catch(function () {});
-            } catch (ignore) {}
-
-            // 応急措置: 保存側の応答仕様を確認するまでは受付完了と断定しない。
-            // タイムアウトでも書き込み済みの可能性があるため、再送しない。
             var fallbackLines = ['KENZO SUMMIT 2026 受付状況の確認', '',
-                'フォームから送信を試みました。新規申込ではなく、受付状況をご確認ください。', ''];
-            for (var field in sheetData) { fallbackLines.push(field + ': ' + sheetData[field]); }
+                '受付確認ID: ' + requestId,
+                '新規申込ではなく、以下の受付状況をご確認ください。', ''];
+            for (var field in sheetData) {
+                if (field !== 'requestId') fallbackLines.push(field + ': ' + sheetData[field]);
+            }
             document.getElementById('fbtext').value = '宛先: ' + TO +
                 '\n件名: 【受付状況の確認】KENZO SUMMIT 2026\n\n' + fallbackLines.join('\n');
             function showUnconfirmed() {
-                btn.disabled = true;
                 btn.textContent = '受付結果は未確認です';
-                document.getElementById('done').classList.remove('show');
                 document.getElementById('fb').classList.add('show');
             }
-            var statusTimer = setTimeout(showUnconfirmed, 15000);
-            function finishAttempt() {
-                clearTimeout(statusTimer);
-                showUnconfirmed();
-            }
+
+            // 同じページへ戻っても再送せず、送信内容はhiddenのJSONだけにする。
+            form.querySelectorAll('input:not([name="payload"]), textarea').forEach(function (input) {
+                input.disabled = true;
+            });
+            document.getElementById('fbtext').disabled = false;
+            // 通常フォームPOSTで結果ページへ遷移する。保存成功の表示はサーバーだけが行う。
             try {
-                fetch(ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify(payload)
-                }).then(finishAttempt, finishAttempt);
+                HTMLFormElement.prototype.submit.call(form);
+                setTimeout(showUnconfirmed, 20000);
             } catch (ignore) {
-                finishAttempt();
+                showUnconfirmed();
             }
         });
 
@@ -448,4 +445,5 @@
     </script>
 </body>
 </html>
+
 
