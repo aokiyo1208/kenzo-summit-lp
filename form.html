@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>参加申込｜KENZO SUMMIT 2026</title>
+    <title>満員御礼・申込終了｜KENZO SUMMIT 2026</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -237,213 +237,18 @@
 <body>
     <div class="top">
         <a class="back" href="index.html">← KENZO SUMMIT 2026</a>
-        <h1>参加申込</h1>
-        <p>2026.11.10（火）14:00–17:00｜東京・飯田橋｜参加費無料</p>
+        <h1>満員御礼・申込終了</h1>
+        <p>2026.11.10（火）14:00–17:00｜東京・飯田橋</p>
     </div>
-
-    <form class="card" id="f" method="post" novalidate>
-        <input type="hidden" id="submission-payload" name="payload">
-        <noscript><p>お申し込みにはJavaScriptを有効にしてください。難しい場合は事務局へお問い合わせください。</p></noscript>
-        <div class="field">
-            <label>お名前<span class="req">必須</span></label>
-            <div class="name-row">
-                <input type="text" id="sei" placeholder="姓" autocomplete="family-name" required>
-                <input type="text" id="mei" placeholder="名" autocomplete="given-name" required>
-            </div>
-        </div>
-        <div class="field">
-            <label for="company">会社名<span class="req">必須</span></label>
-            <input type="text" id="company" autocomplete="organization" required>
-        </div>
-        <div class="field">
-            <label for="title">役職</label>
-            <input type="text" id="title" autocomplete="organization-title">
-        </div>
-        <div class="field">
-            <label for="email">メールアドレス<span class="req">必須</span></label>
-            <input type="email" id="email" autocomplete="email" required>
-            <div class="note">開催1週間前に詳細情報をお送りします。</div>
-        </div>
-        <div class="field">
-            <label for="tel">電話番号</label>
-            <input type="tel" id="tel" autocomplete="tel">
-        </div>
-        <div class="field">
-            <label>受講方法<span class="req">必須</span></label>
-            <div class="choices">
-                <input type="radio" name="how" id="how1" value="会場">
-                <label class="chip" for="how1">会場</label>
-                <input type="radio" name="how" id="how2" value="ZOOM">
-                <label class="chip" for="how2">ZOOM</label>
-            </div>
-            <div class="note">会場40名 / オンライン40名（先着順）</div>
-        </div>
-        <div class="field">
-            <label>CPDS単位</label>
-            <div class="choices">
-                <input type="radio" name="cpds" id="cpds1" value="必要">
-                <label class="chip" for="cpds1">必要</label>
-                <input type="radio" name="cpds" id="cpds2" value="不必要">
-                <label class="chip" for="cpds2">不必要</label>
-            </div>
-        </div>
-        <div class="field" id="cpdsno-field" style="display: none;">
-            <label for="cpdsno">CPDS技術者番号</label>
-            <input type="text" id="cpdsno" inputmode="numeric">
-            <div class="note">CPDS単位が「必要」の方はご入力ください。</div>
-        </div>
-        <div class="field" role="group" aria-labelledby="cpd-label">
-            <label id="cpd-label">CPD単位<span class="req">必須</span></label>
-            <div class="choices">
-                <input type="radio" name="cpd" id="cpd1" value="必要" required>
-                <label class="chip" for="cpd1">必要</label>
-                <input type="radio" name="cpd" id="cpd2" value="不必要" required>
-                <label class="chip" for="cpd2">不必要</label>
-            </div>
-            <div class="note">建築CPDについてお選びください。</div>
-        </div>
-        <div class="field">
-            <label>交流会（17:00–18:30）</label>
-            <div class="choices">
-                <input type="radio" name="party" id="party1" value="参加する">
-                <label class="chip" for="party1">参加する</label>
-                <input type="radio" name="party" id="party2" value="参加しない">
-                <label class="chip" for="party2">参加しない</label>
-            </div>
-        </div>
-        <div class="field">
-            <label for="memo">ご質問・備考</label>
-            <textarea id="memo" rows="3"></textarea>
-        </div>
-
-        <button type="submit" class="btn" id="submitbtn" disabled>申し込む</button>
-        <div class="err" id="err">必須項目（お名前・会社名・メールアドレス・受講方法・CPD単位）をご入力ください。</div>
-        <p class="hint">送信後、Google Apps Scriptの受付結果ページへ移動します。受付番号が表示されたら受付完了です。</p>
-
-        <div class="fallback" id="fb">
-            <p>受付結果を確認できませんでした。重複申込を避けるため、この画面や再読み込み後のフォームから再送せず、<strong>contact@kenzo.tech</strong> へ受付状況をご確認ください。以下は送信を試みた内容です。</p>
-            <textarea id="fbtext" readonly></textarea>
-            <button type="button" class="copy" id="copybtn">内容をコピー</button>
-        </div>
-    </form>
-
+    <main class="card">
+        <h2>お申し込みの受付は終了しました</h2>
+        <p>定員に達したため、会場・オンラインともにお申し込みの受付を終了しました。</p>
+        <p>たくさんのお申し込みをありがとうございました。</p>
+        <p><a href="index.html">イベント概要に戻る</a></p>
+    </main>
     <footer>
         <div>KENZO SUMMIT 2026｜主催：株式会社KENZO</div>
         <div>お問い合わせ：contact@kenzo.tech</div>
     </footer>
-
-    <script>
-        var TO = 'contact@kenzo.tech';
-        var form = document.getElementById('f');
-
-        function val(id) { return document.getElementById(id).value.trim(); }
-        function picked(name) {
-            var el = document.querySelector('input[name="' + name + '"]:checked');
-            return el ? el.value : '';
-        }
-
-        document.getElementById('submitbtn').disabled = false;
-        var submissionStarted = false;
-        var SHEET_HOOK = 'https://script.google.com/macros/s/AKfycbwHUWmNoXxbT_B2Synjf0QxdtKLRkVR3lORC0Mmz6diSE87Mx-kK9PcHs-iqHbZwHW-/exec?key=kenzo2026hook';
-        form.action = SHEET_HOOK;
-
-        function newRequestId() {
-            if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
-            var bytes = new Uint8Array(16);
-            crypto.getRandomValues(bytes);
-            bytes[6] = (bytes[6] & 15) | 64;
-            bytes[8] = (bytes[8] & 63) | 128;
-            var hex = Array.from(bytes, function (b) { return b.toString(16).padStart(2, '0'); }).join('');
-            return hex.slice(0, 8) + '-' + hex.slice(8, 12) + '-' + hex.slice(12, 16) + '-' + hex.slice(16, 20) + '-' + hex.slice(20);
-        }
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            if (submissionStarted) return;
-            var err = document.getElementById('err');
-            if (!val('sei') || !val('mei') || !val('company') || !val('email') || !picked('how') || !picked('cpd') || !document.getElementById('email').validity.valid) {
-                err.classList.add('show');
-                return;
-            }
-            err.classList.remove('show');
-            var requestId;
-            try {
-                requestId = newRequestId();
-            } catch (ignore) {
-                err.textContent = '安全な受付番号を作成できませんでした。ブラウザを更新するか、事務局へお問い合わせください。';
-                err.classList.add('show');
-                return;
-            }
-            submissionStarted = true;
-            // 既存の備考列でもCPD希望を保存できるよう、元の備考を保持して追記
-            var memoWithCpd = (val('memo') ? val('memo') + '\n' : '') + 'CPD単位: ' + picked('cpd');
-            var sheetData = {
-                'お名前': val('sei') + ' ' + val('mei'),
-                '会社名': val('company'),
-                '役職': val('title') || '-',
-                'メール': val('email'),
-                '電話': val('tel') || '-',
-                '受講方法': picked('how'),
-                'CPDS': picked('cpds') || '-',
-                'CPDS番号': val('cpdsno') || '-',
-                'CPD単位': picked('cpd'),
-                '交流会': picked('party') || '-',
-                '備考': memoWithCpd
-            };
-            sheetData.requestId = requestId;
-            document.getElementById('submission-payload').value = JSON.stringify(sheetData);
-            var btn = document.getElementById('submitbtn');
-            btn.disabled = true;
-            btn.textContent = '受付結果へ移動中…';
-
-            var fallbackLines = ['KENZO SUMMIT 2026 受付状況の確認', '',
-                '受付確認ID: ' + requestId,
-                '新規申込ではなく、以下の受付状況をご確認ください。', ''];
-            for (var field in sheetData) {
-                if (field !== 'requestId') fallbackLines.push(field + ': ' + sheetData[field]);
-            }
-            document.getElementById('fbtext').value = '宛先: ' + TO +
-                '\n件名: 【受付状況の確認】KENZO SUMMIT 2026\n\n' + fallbackLines.join('\n');
-            function showUnconfirmed() {
-                btn.textContent = '受付結果は未確認です';
-                document.getElementById('fb').classList.add('show');
-            }
-
-            // 同じページへ戻っても再送せず、送信内容はhiddenのJSONだけにする。
-            form.querySelectorAll('input:not([name="payload"]), textarea').forEach(function (input) {
-                input.disabled = true;
-            });
-            document.getElementById('fbtext').disabled = false;
-            // 通常フォームPOSTで結果ページへ遷移する。保存成功の表示はサーバーだけが行う。
-            try {
-                HTMLFormElement.prototype.submit.call(form);
-                setTimeout(showUnconfirmed, 20000);
-            } catch (ignore) {
-                showUnconfirmed();
-            }
-        });
-
-        document.querySelectorAll('input[name="cpds"]').forEach(function (r) {
-            r.addEventListener('change', function () {
-                document.getElementById('cpdsno-field').style.display =
-                    picked('cpds') === '必要' ? 'block' : 'none';
-            });
-        });
-
-        document.getElementById('copybtn').addEventListener('click', function () {
-            var t = document.getElementById('fbtext');
-            t.select();
-            try {
-                navigator.clipboard.writeText(t.value).then(function () {
-                    document.getElementById('copybtn').textContent = 'コピーしました';
-                });
-            } catch (e) {
-                document.execCommand('copy');
-                document.getElementById('copybtn').textContent = 'コピーしました';
-            }
-        });
-    </script>
 </body>
 </html>
-
-
